@@ -10,9 +10,9 @@ function Router() {
     <Routes>
     <Route path="/" element={<HomePage/>}/>
     <Route path="/dashboard" element={<DashboardPage/>}/>
-    <Route path="/" element={<AuthPage/>}/>
-    <Route path="/" element={<AdminPage/>}/>
-    <Route path="/" element={<PageNotFound/>}/>
+    <Route path="/auth" element={<AuthPage/>}/>
+    <Route path="/admin" element={<AdminPage/>}/>
+    <Route path="/*" element={<PageNotFound/>}/>
    </Routes>
   )
 }
