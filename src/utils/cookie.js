@@ -5,4 +5,12 @@ const setCookie = (tokens) => {
   max-age=${30 * 24 * 60 * 60}`;
 };
 
-export {setCookie}
+const getCookie = (cookieName) => {
+  if (typeof window !== 'undefined') {
+    const value = `; ${document.cookie}`;
+    const parts = value?.split(`; ${name}=`);
+    if (parts?.length === 2) return parts?.pop()?.split(";")?.shift();
+  }
+  return null;
+};
+export { setCookie, getCookie };
