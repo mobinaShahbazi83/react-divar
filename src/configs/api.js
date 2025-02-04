@@ -26,7 +26,7 @@ api.interceptors.response.use(
   },
   async (error) => {
     const orginalRequest = error.config;
-    if (error.response.state === 401 && !orginalRequest._retry)
+    if (error.response.state === 401 && !orginalRequest._retry){
       orginalRequest._retry = true;
 
     const res = await getNewTokens();
@@ -34,6 +34,6 @@ api.interceptors.response.use(
     setCookie(res.response.data);
 
     return api(orginalRequest);
-  }
+  }}
 );
 export default api;
