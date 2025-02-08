@@ -5,11 +5,11 @@ import AuthPage from "../pages/AuthPage";
 import  PageNotFound from "../pages/404";
 import AdminPage from "../pages/AdminPage"
 import { useQuery } from "@tanstack/react-query";
-import { getProfile } from "../services/user";
+import { useGetUser } from "../services/user";
 import Loader from "../components/modules/Loader";
 
 function Router() {
-    const {data, isLoading, error} = useQuery(["profile"], getProfile)
+    const {data, isLoading, error} = useGetUser()
     console.log({data, isLoading, error})
 
     if(isLoading) return <Loader/>

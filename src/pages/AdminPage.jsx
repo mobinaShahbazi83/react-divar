@@ -1,8 +1,9 @@
+import CategotyForm from "../components/templates/CategotyForm"
 
 
 function AdminPage() {
   return (
-    <div>AdminPage</div>
+    <div><CategotyForm/></div>
   )
 }
 

@@ -1,15 +1,25 @@
 import { sendOtp } from "../../services/auth"
+import { useSendOtp } from "../../services/mutation"
 import styles from "./SendOtp.module.css"
 
 function SendOtpForm({setStep, mobile, setMobile}) {
+  const { isPending, mutate } = useSendOtp();
     const submitHandler =async(e) => {
         e.preventDefault()
         if(mobile.length !== 11) return
 
-        const {response, error} = await sendOtp(mobile)
-        if(response) setStep(2)
-            if(error) console.log(error.response.data.message)
-        console.log({response, error})
+       
+        mutate(
+          { mobile },
+          {
+            onSuccess: (data) => {
+              setStep(2);
+            },
+            onError: (error) => {
+              console.error(error.message);
+            },
+          }
+        );
     }
   return (
   <form onSubmit={submitHandler} className={styles.form}>

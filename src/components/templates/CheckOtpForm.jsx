@@ -2,13 +2,13 @@ import { useNavigate } from "react-router-dom"
 import { checkOtp } from "../../services/auth"
 import { setCookie } from "../../utils/cookie"
 import { useQuery } from "@tanstack/react-query"
-import { getProfile } from "../../services/user"
+import { useGetUser } from "../../services/user"
 import styles from "./CheckOtp.module.css"
 
 
 function CheckOtpForm({code,setCode, mobile, setStep}) {
   const navigate = useNavigate()
-  const {refetch} = useQuery(["profile"], getProfile)
+  const {refetch} = useGetUser()
     const submitHandler = async (e) => {
         e.preventDefault()
        if(code.length !== 5) return

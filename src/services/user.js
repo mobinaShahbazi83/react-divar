@@ -1,7 +1,17 @@
+import { useQuery } from "@tanstack/react-query";
 import api from "../configs/api";
-import { getCookie } from "../utils/cookie";
-const token = getCookie("accessToken")
 
-const getProfile = () => api.get("user/whoami")
 
-export { getProfile };
+
+const useGetUser = () => {
+    const queryFn = () => api.get("/user/profile");
+    const queryKey = ["user"];
+    const { data, error, isPending , refetch } = useQuery({
+      queryKey,
+      queryFn,
+    });
+  
+    return { data, error, isPending ,refetch};
+  };
+export {  useGetUser};
+
