@@ -1,8 +1,9 @@
+import Cookies from "js-cookie";
+
 const setCookie = (tokens) => {
-  document.cookie = `accessToken=${tokens.accessToken};
-  max-age=${1 * 24 * 60 * 60}`;
-  document.cookie = `refreshToken=${tokens.refreshToken};
-  max-age=${30 * 24 * 60 * 60}`;
+  const { accessToken, refreshToken } = tokens;
+  Cookies.set('accessToken', accessToken, { expires: 1, path: '/', secure: true });
+  Cookies.set('refreshToken', refreshToken, { expires: 30, path: '/', secure: true });
 };
 
 const getCookie = (cookieName) => {
