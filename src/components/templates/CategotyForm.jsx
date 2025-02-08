@@ -1,4 +1,5 @@
 import { useState } from "react"
+import styles from "./CategoryForm.module.css"
 
 
 function CategotyForm() {
@@ -11,7 +12,7 @@ function CategotyForm() {
         event.preventDefault()
     }
   return (
-    <form onChange={changeHandler} onSubmit={submitHandler}>
+    <form onChange={changeHandler} onSubmit={submitHandler} className={styles.form}>
         <h3>دسته بندی جدید</h3>
         <label htmlFor="name">اسم دسته بندی</label>
         <input type="text" name="name" id="name"/>
