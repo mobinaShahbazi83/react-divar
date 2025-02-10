@@ -8,7 +8,7 @@ import styles from "./CheckOtp.module.css"
 
 function CheckOtpForm({code,setCode, mobile, setStep}) {
   const navigate = useNavigate()
-  const {refetch} = useGetUser()
+  const {refetch , data} = useGetUser()
     const submitHandler = async (e) => {
         e.preventDefault()
        if(code.length !== 5) return

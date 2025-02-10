@@ -6,12 +6,7 @@ const setCookie = (tokens) => {
   Cookies.set('refreshToken', refreshToken, { expires: 30, path: '/', secure: true });
 };
 
-const getCookie = (cookieName) => {
-  if (typeof window !== 'undefined') {
-    const value = `; ${document.cookie}`;
-    const parts = value?.split(`; ${name}=`);
-    if (parts?.length === 2) return parts?.pop()?.split(";")?.shift();
-  }
-  return null;
-};
+function getCookie(name) {
+  return Cookies.get(name);
+}
 export { setCookie, getCookie };

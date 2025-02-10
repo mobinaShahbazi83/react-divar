@@ -4,8 +4,8 @@ import api from "../configs/api";
 
 
 const useGetUser = () => {
-    const queryFn = () => api.get("/user/profile");
-    const queryKey = ["user"];
+    const queryFn = () => api.get("/user/whoami" );
+    const queryKey = ["profile"];
     const { data, error, isPending , refetch } = useQuery({
       queryKey,
       queryFn,
