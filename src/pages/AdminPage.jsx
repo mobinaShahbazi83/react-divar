@@ -1,9 +1,13 @@
+import CategoryList from "../components/templates/CategoryList"
 import CategotyForm from "../components/templates/CategotyForm"
 
 
 function AdminPage() {
   return (
-    <div><CategotyForm/></div>
+    <div>
+      <CategoryList/>
+      <CategotyForm/>
+      </div>
   )
 }
 
