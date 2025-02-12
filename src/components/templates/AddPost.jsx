@@ -1,14 +1,38 @@
 import { useQuery } from "@tanstack/react-query"
 import styles from "./AddPost.module.css"
 import { getCategory } from "../../services/admin"
+import { useState } from "react"
 
 function AddPost() {
     const {data} = useQuery(["get-categories"],getCategory)
+    const [form, setForm] = useState({
+        title: "",
+        content: "",
+        amount: "",
+        city: "",
+        category: null,
+        images: null
+
+
+
+
+
+    })
     const addHandler = (event) => {
         event.preventDefault()
     }
+
+    const changeHandler = (event) => {
+        const name = event.target.name
+        if(name !== "images") {
+            setForm({...form, [name]: event.target.value})
+        } else {
+            setForm({...form, [name]: event.target.files[0]})
+        }
+
+    }
   return (
-  <form>
+  <form onChange={changeHandler}>
     <h3>افزودن اگهی</h3>
     <label htmlFor="title">عنوان</label>
     <input type="text" name="title" id="title"/>
