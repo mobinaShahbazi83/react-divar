@@ -32,7 +32,7 @@ function AddPost() {
 
     }
   return (
-  <form onChange={changeHandler}>
+  <form onChange={changeHandler} className={styles.form}>
     <h3>افزودن اگهی</h3>
     <label htmlFor="title">عنوان</label>
     <input type="text" name="title" id="title"/>
