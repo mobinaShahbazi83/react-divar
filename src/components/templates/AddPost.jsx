@@ -2,6 +2,9 @@ import { useQuery } from "@tanstack/react-query"
 import styles from "./AddPost.module.css"
 import { getCategory } from "../../services/admin"
 import { useState } from "react"
+import { getCookie } from "../../utils/cookie"
+import axios from "axios"
+import toast, { Toaster } from "react-hot-toast"
 
 function AddPost() {
     const {data} = useQuery(["get-categories"],getCategory)
@@ -20,6 +23,17 @@ function AddPost() {
     })
     const addHandler = (event) => {
         event.preventDefault()
+        const formData = new FormData()
+        for(let i in form) {
+            formData.append(i, formData[i])
+        }
+        const token = getCookie("accessToken")
+        axios.post(`${import.meta.env.VITE_BASE_URL}post/create`, formData {
+            headers: { "Content-Type": "multipart/form-data",
+                Authorization: `bearer ${token}`
+             }
+        }).then((res) => toast.success(res.data.message))
+        .catch((error) => toast.apply.error("مشکلی پیش امده است") )
     }
 
     const changeHandler = (event) => {
@@ -39,7 +53,7 @@ function AddPost() {
     <label htmlFor="content">توضیحات</label>
     <textarea name="content" id="content"/>
     <label htmlFor="amount">قیمت</label>
-    <input  type="text" name="amount" id="amount"/>
+    <input  type="number" name="amount" id="amount"/>
     <label htmlFor="city">شهر</label>
     <input type="text" name="city" id="city"/>
     <label htmlFor="category">دسته بندی</label>
@@ -51,6 +65,7 @@ function AddPost() {
     <label htmlFor="images">عکس</label>
     <input type="file" name="images" id="images"/>
     <button onClick={addHandler}>ایجاد</button>
+    <Toaster/>
   </form>
   )
 }
