@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import api from "../configs/api";
 
 const getPost = () => api.get("post/my")
+const getAllPost = () => api.get("")
 
 const useGetUser = () => {
     const queryFn = () => api.get("/user/whoami" );
@@ -13,5 +14,5 @@ const useGetUser = () => {
   
     return { data, error, isPending ,refetch};
   };
-export {  useGetUser, getPost};
+export {  useGetUser, getPost, getAllPost};
 
