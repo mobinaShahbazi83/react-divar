@@ -15,11 +15,6 @@ function AddPost() {
         city: "",
         category: null,
         images: null
-
-
-
-
-
     })
     const addHandler = (event) => {
         event.preventDefault()
@@ -28,12 +23,12 @@ function AddPost() {
             formData.append(i, formData[i])
         }
         const token = getCookie("accessToken")
-        axios.post(`${import.meta.env.VITE_BASE_URL}post/create`, formData {
+        axios.post(`${import.meta.env.VITE_BASE_URL}post/create`, formData ,{
             headers: { "Content-Type": "multipart/form-data",
                 Authorization: `bearer ${token}`
              }
         }).then((res) => toast.success(res.data.message))
-        .catch((error) => toast.apply.error("مشکلی پیش امده است") )
+        .catch((error) => toast.error("مشکلی پیش امده است") )
     }
 
     const changeHandler = (event) => {
@@ -52,7 +47,7 @@ function AddPost() {
     <input type="text" name="title" id="title"/>
     <label htmlFor="content">توضیحات</label>
     <textarea name="content" id="content"/>
-    <label htmlFor="amount">قیمت</label>
+    <label htmlFor="amount">مبلغ</label>
     <input  type="number" name="amount" id="amount"/>
     <label htmlFor="city">شهر</label>
     <input type="text" name="city" id="city"/>
@@ -71,3 +66,4 @@ function AddPost() {
 }
 
 export default AddPost
+
